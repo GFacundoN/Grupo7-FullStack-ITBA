@@ -2,8 +2,8 @@
 
 ## Integrantes
 
-| Nombre | Usuario de GitHub | Responsabilidad principal |
-|---|---|---|
+| Nombre | Usuario de GitHub |
+|---|---|
 | Niderhaus Franco | @franNider |
 | Ferreira German | @GermanFerreiraa> |
 | Maximo Manicchio | @maxi919 |
