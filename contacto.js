@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const successMessage = document.getElementById("success-message");
   const cartCounter = document.getElementById("cart-counter");
 
-  // Simular contador del carrito leyendo desde localStorage (por si tus compañeros agregan cosas)
+  // Simular contador del carrito leyendo desde localStorage 
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   cartCounter.textContent = cart.length;
 
