@@ -44,6 +44,7 @@ if (producto) {
 
     botonCarrito.addEventListener("click", () => {
         agregarAlCarrito(producto.id);
+        confirmarAgregado(botonCarrito);
     });
 
 } else {

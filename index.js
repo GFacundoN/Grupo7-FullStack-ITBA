@@ -100,6 +100,7 @@ function crearTarjetaProducto(producto) {
         () => {
 
             agregarAlCarrito(producto.id);
+            confirmarAgregado(botonCarrito);
 
         }
     );
