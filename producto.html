@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Hermanos Jota - Muebles artesanales, diseño atemporal y materiales nobles.">
+
+        <title>Producto — Hermanos Jota</title>
+
+        <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="header__container">
+                <a href="index.html" class="header__logo" aria-label="Hermanos Jota - Inicio">
+                    <img src="img/logo.svg" alt="Hermanos Jota">
+                </a>
+                <nav class="header__nav" aria-label="Navegación principal">
+                    <ul class="header__menu">
+                        <li>
+                            <a href="index.html">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="productos.html" aria-current="page">
+                                Productos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contacto.html">
+                                Contacto
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <a href="#" class="header__carrito" aria-label="Carrito de compras">
+                    <span>Carrito</span>
+                    <span data-carrito-contador>0</span>
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <section id="producto-detalle">
+                <div class="producto-imagen">
+                    <img id="producto-imagen" src="" alt="">
+                </div>
+
+                <div class="producto-informacion">
+                    <h1 id="producto-nombre"></h1>
+                    <p id="producto-descripcion"></p>
+                    <p id="producto-precio"></p>
+                    
+                    <section class="producto-especificaciones">
+                        <h2>Especificaciones</h2>
+
+                        <table id="producto-detalles">
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <button id="boton-carrito" class="producto-detalle__carrito" type="button"> Añadir al carrito </button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__container">
+
+                <section class="footer__marca">
+                    <h2>Hermanos Jota</h2>
+                    <p>
+                        Muebles artesanales con historia,
+                        diseñados para perdurar.
+                    </p>
+                </section>
+
+                <section class="footer__navegacion">
+                    <h2>Navegación</h2>
+                    <nav aria-label="Navegación del pie de página">
+                        <ul>
+                            <li>
+                                <a href="index.html">
+                                    Inicio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="productos.html">
+                                    Productos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="contacto.html">
+                                    Contacto
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </section>
+
+                <section class="footer__contacto">
+                    <h2>Casa Taller</h2>
+
+                    <address>
+                        <p>
+                            Av. San Juan 2847
+                            <br>
+                            San Cristóbal, CABA
+                        </p>
+
+                        <p>
+                            <a href="mailto:info@hermanosjota.com.ar">
+                                info@hermanosjota.com.ar
+                            </a>
+                        </p>
+
+                        <p>
+                            <a href="tel:+541145678900">
+                                +54 11 4567-8900
+                            </a>
+                        </p>
+                    </address>
+                </section>
+
+                <section class="footer__redes">
+                    <h2>Seguinos</h2>
+
+                    <a href="https://www.instagram.com/hermanosjota_ba" target="_blank" rel="noopener noreferrer">
+                        @hermanosjota_ba
+                    </a>
+                </section>
+            </div>
+
+            <div class="footer__legal">
+                <p>
+                    © 2026 Hermanos Jota. Todos los derechos reservados.
+                </p>
+            </div>
+        </footer>
+
+        <script src="productos.js"></script>
+        <script src="producto.js"></script>
+        <script src="carrito.js"></script>
+    </body>
+
+</html>

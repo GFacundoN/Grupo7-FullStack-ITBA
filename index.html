@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Hermanos Jota - Muebles artesanales, diseño atemporal y materiales nobles.">
+    
+    <title>Hermanos Jota | Muebles artesanales</title>
+
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__container">
+            
+            <a href="index.html" class="header__logo" aria-label="Hermanos Jota - Inicio">
+                <img src="img/logo.svg" alt="Hermanos Jota">
+            </a>
+            
+            <nav class="header__nav" aria-label="Navegación principal">
+                <ul class="header__menu">
+                    <li>
+                        <a href="index.html" aria-current="page">
+                            Inicio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="productos.html">
+                            Productos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contacto.html">
+                            Contacto
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <a href="#" class="header__carrito" aria-label="Carrito de compras">
+                <span>Carrito</span>
+                <span data-carrito-contador>0</span>
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="hero__contenido">
+                
+                <p class="hero__subtitulo">
+                    Muebles con historia
+                </p>
+                
+                <h1>
+                    Diseño que perdura, piezas que cuentan historias
+                </h1>
+                
+                <p>
+                    Muebles artesanales creados con materiales nobles,
+                    diseño atemporal y una mirada consciente hacia el futuro.
+                </p>
+                
+                <a href="productos.html" class="hero__boton">
+                    Ver colección
+                </a>
+            </div>
+
+            <img class="hero__imagen" src="img/productos/sillon-copacabana.png" alt="Sillón Copacabana">
+        </section>
+        
+        <section class="destacados" aria-labelledby="titulo-destacados">
+            <div class="destacados__encabezado">
+                
+                <p class="destacados__subtitulo">
+                    Nuestra selección
+                </p>
+                
+                <h2 id="titulo-destacados">
+                    Productos destacados
+                </h2>
+                
+                <p>
+                    Piezas pensadas para acompañarte durante años
+                    y convertirse en parte de tu historia.
+                </p>
+            </div>
+            
+            <div id="productos-destacados" class="destacados__productos">
+            
+            </div>
+            <div class="destacados__acciones">
+                <a href="productos.html" class="destacados__ver-todos">
+                    Ver todos los productos
+                </a>
+            </div>
+        </section>
+        
+        <section class="historia" aria-labelledby="titulo-historia">
+            
+            <div class="historia__contenido">
+                
+                <p class="historia__subtitulo">
+                    Hermanos Jota
+                </p>
+                
+                <h2 id="titulo-historia">
+                    Artesanía que honra el pasado y abraza el futuro
+                </h2>
+                
+                <p>
+                    Cada pieza nace del encuentro entre manos expertas,
+                    materiales nobles y una forma de entender el diseño
+                    que valora tanto la tradición como la innovación.
+                </p>
+
+                <p>
+                    Creamos muebles pensados para durar, envejecer con
+                    carácter y formar parte de los espacios que habitamos.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+
+        <div class="footer__container">
+            <section class="footer__marca">
+                <h2>Hermanos Jota</h2>
+
+                <p>
+                    Muebles artesanales con historia,
+                    diseñados para perdurar.
+                </p>
+            </section>
+
+            <section class="footer__navegacion">
+                <h2>Navegación</h2>
+
+                <nav aria-label="Navegación del pie de página">
+                    <ul>
+                        <li>
+                            <a href="index.html">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="productos.html">
+                                Productos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contacto.html">
+                                Contacto
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+
+            <section class="footer__contacto">
+                <h2>Casa Taller</h2>
+
+                <address>
+                    <p>
+                        Av. San Juan 2847
+                        <br>
+                        San Cristóbal, CABA
+                    </p>
+
+                    <p>
+                        <a href="mailto:info@hermanosjota.com.ar">
+                            info@hermanosjota.com.ar
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="tel:+541145678900">
+                            +54 11 4567-8900
+                        </a>
+                    </p>
+                </address>
+            </section>
+
+            <section class="footer__redes">
+                <h2>Seguinos</h2>
+
+                <a href="https://www.instagram.com/hermanosjota_ba" target="_blank" rel="noopener noreferrer">
+                    @hermanosjota_ba
+                </a>
+            </section>
+        </div>
+
+        <div class="footer__legal">
+            <p>
+                © 2026 Hermanos Jota. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+    <script src="carrito.js"></script>
+    <script src="productos.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo — Hermanos Jota</title>
+
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo" aria-label="Hermanos Jota - Inicio">
+        <img src="img/logo.svg" alt="Hermanos Jota" />
+      </a>
+
+      <nav class="header__nav" aria-label="Navegación principal">
+        <ul class="header__menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="productos.html" aria-current="page">Productos</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <a href="#" class="header__carrito" aria-label="Carrito de compras">
+        <span>Carrito</span>
+        <span data-carrito-contador>0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="catalogo">
+    <section>
+      <h1>Catálogo</h1>
+      <p>Once piezas atemporales, pensadas para acompañar generaciones.</p>
+
+      <div class="buscador">
+        <label for="buscador-input">Buscar</label>
+        <input
+          type="search"
+          id="buscador-input"
+          placeholder="Buscar por nombre o categoría…"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="grilla-productos" id="catalogo-grid">
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=1">
+            <img src="img/productos/aparador-uspallata.png" alt="Aparador Uspallata" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Living</span>
+              <h3 class="tarjeta-producto__nombre">Aparador Uspallata</h3>
+              <p class="tarjeta-producto__precio">$ 850.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=2">
+            <img src="img/productos/biblioteca-recoleta.png" alt="Biblioteca Recoleta" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Living</span>
+              <h3 class="tarjeta-producto__nombre">Biblioteca Recoleta</h3>
+              <p class="tarjeta-producto__precio">$ 620.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=3">
+            <img src="img/productos/butaca-mendoza.png" alt="Butaca Mendoza" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Living</span>
+              <h3 class="tarjeta-producto__nombre">Butaca Mendoza</h3>
+              <p class="tarjeta-producto__precio">$ 480.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=4">
+            <img src="img/productos/sillon-copacabana.png" alt="Sillón Copacabana" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Living</span>
+              <h3 class="tarjeta-producto__nombre">Sillón Copacabana</h3>
+              <p class="tarjeta-producto__precio">$ 690.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=5">
+            <img src="img/productos/mesa-centro-araucaria.png" alt="Mesa de Centro Araucaria" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Living</span>
+              <h3 class="tarjeta-producto__nombre">Mesa de Centro Araucaria</h3>
+              <p class="tarjeta-producto__precio">$ 410.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=6">
+            <img src="img/productos/mesa-noche-aconcagua.png" alt="Mesa de Noche Aconcagua" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Dormitorio</span>
+              <h3 class="tarjeta-producto__nombre">Mesa de Noche Aconcagua</h3>
+              <p class="tarjeta-producto__precio">$ 195.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=7">
+            <img src="img/productos/sofa-patagonia.png" alt="Sofá Patagonia" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Living</span>
+              <h3 class="tarjeta-producto__nombre">Sofá Patagonia</h3>
+              <p class="tarjeta-producto__precio">$ 980.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=8">
+            <img src="img/productos/mesa-comedor-pampa.png" alt="Mesa Comedor Pampa" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Comedor</span>
+              <h3 class="tarjeta-producto__nombre">Mesa Comedor Pampa</h3>
+              <p class="tarjeta-producto__precio">$ 875.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=9">
+            <img src="img/productos/sillas-cordoba.png" alt="Sillas Córdoba" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Comedor</span>
+              <h3 class="tarjeta-producto__nombre">Sillas Córdoba</h3>
+              <p class="tarjeta-producto__precio">$ 520.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=10">
+            <img src="img/productos/escritorio-costa.png" alt="Escritorio Costa" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Estudio</span>
+              <h3 class="tarjeta-producto__nombre">Escritorio Costa</h3>
+              <p class="tarjeta-producto__precio">$ 310.000</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="tarjeta-producto">
+          <a href="producto.html?id=11">
+            <img src="img/productos/silla-trabajo-belgrano.png" alt="Silla de Trabajo Belgrano" />
+            <div class="tarjeta-producto__info">
+              <span class="tarjeta-producto__categoria">Estudio</span>
+              <h3 class="tarjeta-producto__nombre">Silla de Trabajo Belgrano</h3>
+              <p class="tarjeta-producto__precio">$ 265.000</p>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <section class="footer__marca">
+        <h2>Hermanos Jota</h2>
+        <p>Muebles artesanales con historia, diseñados para perdurar.</p>
+      </section>
+
+      <section class="footer__navegacion">
+        <h2>Navegación</h2>
+        <nav aria-label="Navegación del pie de página">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+      </section>
+
+      <section class="footer__contacto">
+        <h2>Casa Taller</h2>
+        <address>
+          <p>Av. San Juan 2847<br>San Cristóbal, CABA</p>
+          <p><a href="mailto:info@hermanosjota.com.ar">info@hermanosjota.com.ar</a></p>
+          <p><a href="tel:+541145678900">+54 11 4567-8900</a></p>
+        </address>
+      </section>
+
+      <section class="footer__redes">
+        <h2>Seguinos</h2>
+        <a href="https://www.instagram.com/hermanosjota_ba" target="_blank" rel="noopener noreferrer">@hermanosjota_ba</a>
+      </section>
+    </div>
+
+    <div class="footer__legal">
+      <p>© 2026 Hermanos Jota. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="productos.js"></script>
+  <script src="carrito.js"></script>
+</body>
+</html>
