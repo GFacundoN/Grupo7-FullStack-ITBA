@@ -14,11 +14,10 @@ Abrí `index.html` en el navegador, o si tenés VS Code, click derecho → **Ope
 
 ## Deploy
 
-El sitio está desplegado en **Vercel**, conectado directamente al repositorio de GitHub.
+El sitio está desplegado en **GitHub Pages**, conectado directamente a la rama main del repositorio.
 
-- Al importar el repo en Vercel, cada `push` o merge a la rama `main` dispara un deploy automático — no hay que subir archivos a mano.
-- Al ser un sitio estático (sin backend ni build), no hace falta configurar build command ni variables de entorno: Vercel sirve los archivos tal cual están en el repo.
-- La URL pública queda fija (ej. `https://grupo7-fullstack-itba.vercel.app`) y se actualiza sola con cada cambio aprobado en `main`.
+- Al ser un sitio estático (sin backend ni build), no hace falta configurar build command ni variables de entorno.
+- La URL pública queda fija y se actualiza sola con cada cambio aprobado en `main`.
 
 ## Integrantes
 
