@@ -1,9 +1,6 @@
-function Footer({ cambiarVista }) {
-  function irA(evento, vista) {
-    evento.preventDefault();
-    cambiarVista(vista);
-  }
+import { Link } from 'react-router-dom'
 
+function Footer() {
   return (
     <footer className="footer">
       <div className="footer__container">
@@ -17,14 +14,13 @@ function Footer({ cambiarVista }) {
           <nav aria-label="Navegación del pie de página">
             <ul>
               <li>
-                <a href="#productos" onClick={(evento) => irA(evento, "productos")}>
-                  Productos
-                </a>
+                <Link to="/">Inicio</Link>
               </li>
               <li>
-                <a href="#contacto" onClick={(evento) => irA(evento, "contacto")}>
-                  Contacto
-                </a>
+                <Link to="/productos">Productos</Link>
+              </li>
+              <li>
+                <Link to="/contacto">Contacto</Link>
               </li>
             </ul>
           </nav>

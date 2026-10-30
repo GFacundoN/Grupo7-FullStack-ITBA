@@ -1,0 +1,192 @@
+/* Estilos de catálogo, tarjetas y detalle de producto (dueño: Facundo) */
+
+/* tarjetas de producto en el catalogo */
+.destacados__productos,
+.grilla-productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+.destacados__productos { justify-content: center; }
+
+.producto-card,
+.tarjeta-producto {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 260px;
+    max-width: 320px;
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.producto-card:hover,
+.tarjeta-producto:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra);
+}
+
+/* la <a> del catalogo ocupa toda la tarjeta */
+.tarjeta-producto > a {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.producto-card__imagen,
+.tarjeta-producto img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    padding: 1rem;
+    background: var(--alabastro);
+}
+
+.producto-card__contenido,
+.tarjeta-producto__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    padding: 1.25rem;
+}
+
+.producto-card__categoria,
+.tarjeta-producto__categoria {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--salvia);
+}
+
+.producto-card__nombre,
+.tarjeta-producto__nombre {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.15rem;
+}
+
+.producto-card__descripcion {
+    flex: 1;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+
+.producto-card__precio,
+.tarjeta-producto__precio {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--siena);
+}
+
+.producto-card__detalle {
+    align-self: flex-start;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--siena);
+    border-bottom: 1px solid var(--siena);
+}
+
+.producto-card__carrito { width: 100%; margin-top: 0.5rem; }
+
+/* detalle de cada producto */
+#producto-detalle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 3rem 1.25rem;
+}
+.producto-imagen,
+.producto-informacion { flex: 1 1 320px; }
+
+.producto-imagen img {
+    width: 100%;
+    border-radius: var(--radio);
+    background: var(--alabastro);
+}
+.producto-informacion h1 { font-size: 2rem; }
+#producto-descripcion { color: var(--texto-suave); }
+#producto-precio {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--siena);
+}
+
+.producto-especificaciones { margin: 1.5rem 0; }
+.producto-especificaciones h2 {
+    margin-bottom: 0.75rem;
+    font-family: var(--sans);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+#producto-detalles {
+    width: 100%;
+    border-collapse: collapse;
+}
+#producto-detalles th,
+#producto-detalles td {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--linea);
+    text-align: left;
+    vertical-align: top;
+    font-size: 0.9rem;
+}
+#producto-detalles th {
+    width: 40%;
+    color: var(--texto-suave);
+    font-weight: 600;
+}
+
+.producto-detalle__carrito { width: 100%; margin-top: 1rem; }
+
+/* catalogo */
+.catalogo { padding: 2.5rem 1.25rem 4rem; }
+.catalogo h1 { margin-bottom: 0.25rem; color: var(--siena); }
+.catalogo > section > p { margin-top: 0; color: var(--texto-suave); }
+
+.buscador {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 1.5rem 0 2rem;
+}
+.buscador label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--texto-suave);
+}
+.buscador input {
+    width: 100%;
+    max-width: 380px;
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    border: 1px solid var(--linea);
+    border-radius: 6px;
+    background: var(--blanco);
+}
+.buscador input:focus-visible { border-color: var(--siena); }
+
+/* mejor ux para cuando agregas un producto al carrito */
+.producto-card__carrito.boton--agregado,
+.producto-detalle__carrito.boton--agregado {
+    background: var(--salvia);
+    border-color: var(--salvia);
+}
+.boton--pop { animation: pop 0.3s ease; }
+.carrito-bump { animation: bump 0.4s ease; }
+
+@keyframes pop  { 0%, 100% { transform: scale(1); } 45% { transform: scale(1.05); } }
+@keyframes bump { 0%, 100% { transform: scale(1); } 35% { transform: scale(1.35); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .boton--pop, .carrito-bump { animation: none; }
+}
+

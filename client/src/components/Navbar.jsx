@@ -1,51 +1,59 @@
-function Navbar({ cantidadCarrito, vistaActual, cambiarVista }) {
-  function irA(evento, vista) {
-    evento.preventDefault();
-    cambiarVista(vista);
-  }
+import { useEffect, useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { useCarrito } from '../context/CarritoContext.jsx'
+
+function Navbar() {
+  const { cantidadTotal } = useCarrito()
+  const [avisoVisible, setAvisoVisible] = useState(false)
+
+  // El aviso "Próximamente" se oculta solo a los 2 segundos.
+  useEffect(() => {
+    if (!avisoVisible) return
+    const temporizador = setTimeout(() => setAvisoVisible(false), 2000)
+    return () => clearTimeout(temporizador)
+  }, [avisoVisible])
 
   return (
     <header className="header">
       <div className="header__container">
-        <a
-          href="#productos"
-          className="header__logo"
-          aria-label="Hermanos Jota - Inicio"
-          onClick={(evento) => irA(evento, "productos")}
-        >
+        <Link to="/" className="header__logo" aria-label="Hermanos Jota - Inicio">
           <img src="/img/logo.svg" alt="Hermanos Jota" />
-        </a>
+        </Link>
 
         <nav className="header__nav" aria-label="Navegación principal">
           <ul className="header__menu">
             <li>
-              <a
-                href="#productos"
-                aria-current={vistaActual === "productos" ? "page" : undefined}
-                onClick={(evento) => irA(evento, "productos")}
-              >
-                Productos
-              </a>
+              <NavLink to="/" end>Inicio</NavLink>
             </li>
             <li>
-              <a
-                href="#contacto"
-                aria-current={vistaActual === "contacto" ? "page" : undefined}
-                onClick={(evento) => irA(evento, "contacto")}
-              >
-                Contacto
-              </a>
+              <NavLink to="/productos">Productos</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contacto">Contacto</NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin/crear-producto">Nuevo producto</NavLink>
             </li>
           </ul>
         </nav>
 
-        <a href="#carrito" className="header__carrito" aria-label="Carrito de compras">
-          <span>Carrito</span>
-          <span>{cantidadCarrito}</span>
-        </a>
+        <div className="header__carrito-wrapper">
+          <button
+            type="button"
+            className="header__carrito"
+            aria-label={`Carrito de compras, ${cantidadTotal} productos`}
+            onClick={() => setAvisoVisible(true)}
+          >
+            <span>Carrito</span>
+            <span data-carrito-contador>{cantidadTotal}</span>
+          </button>
+          <p className="header__aviso" role="status">
+            {avisoVisible ? 'El carrito estará disponible próximamente.' : ''}
+          </p>
+        </div>
       </div>
     </header>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
