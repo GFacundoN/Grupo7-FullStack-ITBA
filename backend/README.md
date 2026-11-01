@@ -44,15 +44,17 @@ disponibilidad desconocida. La ruta de imagen original pasa a `imagenUrl`.
 | Campo | Definición |
 | --- | --- |
 | `_id` | ObjectId generado por MongoDB |
-| `id` | Número entero positivo seguro, obligatorio e índice único |
-| `nombre`, `categoria` | Textos obligatorios con trim |
-| `descripcion`, `descripcionCorta` | Textos obligatorios con trim |
+| `id` | Número entero positivo seguro, índice único. Lo asigna POST (siguiente número libre) |
+| `nombre` | Texto obligatorio con trim |
 | `precio` | Número obligatorio, finito, no negativo |
+| `descripcion`, `descripcionCorta`, `categoria` | Textos opcionales con trim |
 | `stock` | Número entero seguro no negativo, por defecto 0 |
-| `imagenUrl` | Texto obligatorio con trim; permite las rutas relativas actuales |
+| `imagenUrl` | Texto opcional con trim; permite las rutas relativas actuales |
 | `imagen` | Alias de `imagenUrl`, incluido al serializar JSON; no se duplica en MongoDB |
-| `detalles` | Mapa obligatorio no vacío de textos no vacíos, con trim |
+| `detalles` | Mapa opcional de textos, con trim |
 | `destacado` | Booleano, por defecto false |
+
+Según la consigna, solo `nombre` y `precio` son obligatorios.
 
 `_id` e `id` son identificadores distintos. El virtual `id` de Mongoose está
 deshabilitado para respetar el número del catálogo. La unicidad se aplica mediante
@@ -101,19 +103,13 @@ diferentes del catálogo, la comprobación falla sin sobrescribirlos.
 Para ver la aplicación en el navegador se debe iniciar también el frontend según
 su documentación. Las pruebas del backend no sustituyen una revisión visual.
 
-## Integración para Máximo
+## Escritura (POST, PUT, DELETE)
 
-Usar `models/Product.js` para POST/PUT/DELETE y conservar la conexión compartida
-de `config/db.js`; el servidor ya espera la conexión antes de aceptar peticiones.
-Agregar las operaciones a `routes/productos.routes.js` y reutilizar los
-middlewares existentes. Proporcionar un `id` numérico único para productos nuevos
-y los campos obligatorios; se puede asignar `imagen` o `imagenUrl` (preferir este
-último). Evitar `.lean()` si se necesita el alias `imagen`, porque los virtuales
-se agregan al serializar documentos Mongoose. En actualizaciones, usar validación
-(`runValidators: true`) y manejar conflictos de índice único (código 11000).
-No devolver al cliente mensajes originales de errores de base de datos.
-
-No se implementaron POST, PUT ni DELETE en esta rama.
+Están en `routes/productos.write.routes.js`, con `middlewares/validarId.js` y
+`middlewares/validarProducto.js`. POST responde 201 con el producto; PUT y DELETE
+aceptan `_id` o el `id` numérico. Datos inválidos: 400. Inexistente: 404. Fallo de
+la base de datos: 500 genérico, sin exponer el error original. Los errores usan
+el formato `{ "error": "mensaje" }`. El body nunca puede fijar `_id` ni `id`.
 
 ## Resultado verificado y dependencias
 
