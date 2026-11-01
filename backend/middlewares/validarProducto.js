@@ -1,5 +1,13 @@
 const CAMPOS_TEXTO = ["nombre", "descripcion", "descripcionCorta", "categoria", "imagenUrl"];
 
+// Solo acepta numeros o textos numericos no vacios: Number([]) y Number("   ")
+// dan 0 y no deben pasar como valores validos.
+function aNumero(valor) {
+  if (typeof valor === "number") return valor;
+  if (typeof valor === "string" && valor.trim() !== "") return Number(valor);
+  return NaN;
+}
+
 // Valida el body de POST/PUT y deja en req.datos solo los campos permitidos
 // (nunca _id ni id). En POST nombre y precio son obligatorios; en PUT alcanza
 // con enviar los campos que cambian.
@@ -27,16 +35,16 @@ function validarProducto({ parcial = false } = {}) {
     if (body.precio === undefined || body.precio === null || body.precio === "") {
       if (!parcial) return falla("precio es obligatorio");
     } else {
-      const precio = Number(body.precio);
-      if (typeof body.precio === "boolean" || !Number.isFinite(precio) || precio < 0) {
+      const precio = aNumero(body.precio);
+      if (!Number.isFinite(precio) || precio < 0) {
         return falla("precio debe ser un numero mayor o igual a 0");
       }
       datos.precio = precio;
     }
 
     if (body.stock !== undefined && body.stock !== null && body.stock !== "") {
-      const stock = Number(body.stock);
-      if (typeof body.stock === "boolean" || !Number.isSafeInteger(stock) || stock < 0) {
+      const stock = aNumero(body.stock);
+      if (!Number.isSafeInteger(stock) || stock < 0) {
         return falla("stock debe ser un numero entero mayor o igual a 0");
       }
       datos.stock = stock;

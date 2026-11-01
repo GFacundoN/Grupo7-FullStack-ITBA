@@ -91,13 +91,17 @@ test("HTTP: escritura valida los datos y responde 201, 400, 404 y 500 sin tocar 
   try {
     // Validaciones: no llegan a la base de datos.
     for (const cuerpo of [{}, { nombre: "x" }, { precio: 5 }, { nombre: " ", precio: 5 },
-      { nombre: "x", precio: -1 }, { nombre: "x", precio: "abc" }, { nombre: "x", precio: 5, stock: 1.5 }]) {
+      { nombre: "x", precio: -1 }, { nombre: "x", precio: "abc" }, { nombre: "x", precio: 5, stock: 1.5 },
+      { nombre: "x", precio: [] }, { nombre: "x", precio: "   " }, { nombre: "x", precio: {} },
+      { nombre: "x", precio: true }, { nombre: "x", precio: 5, stock: [] }, { nombre: "x", precio: 5, stock: "  " }]) {
       const r = await enviar("POST", "", cuerpo);
       assert.equal(r.status, 400);
       assert.equal(typeof (await r.json()).error, "string");
     }
     assert.equal((await enviar("PUT", "/abc", { precio: 1 })).status, 400);
     assert.equal((await enviar("PUT", "/" + idValido, {})).status, 400);
+    assert.equal((await enviar("PUT", "/" + idValido, { precio: [] })).status, 400);
+    assert.equal((await enviar("PUT", "/" + idValido, { precio: "   " })).status, 400);
     assert.equal((await enviar("DELETE", "/abc")).status, 400);
 
     // Alta: 201, id nuevo asignado e _id/id del cliente ignorados.
