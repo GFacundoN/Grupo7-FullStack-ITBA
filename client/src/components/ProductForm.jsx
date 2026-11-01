@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { rutaImagen } from '../utils/rutaImagen.js'
 
 const VACIO = { nombre: '', descripcion: '', precio: '', stock: '', imagenUrl: '' }
 
@@ -36,8 +37,8 @@ function ProductForm({ valoresIniciales, textoBoton, onSubmit }) {
       nuevos.stock = 'El stock debe ser un número entero mayor o igual a 0.'
     }
 
-    if (imagen !== '' && !/^(\/|https?:\/\/)/.test(imagen)) {
-      nuevos.imagenUrl = 'Ingresá una ruta que empiece con / o una URL http(s).'
+    if (/\s/.test(imagen)) {
+      nuevos.imagenUrl = 'La ruta o URL de la imagen no puede tener espacios.'
     }
 
     return nuevos
@@ -55,7 +56,7 @@ function ProductForm({ valoresIniciales, textoBoton, onSubmit }) {
       nombre: form.nombre.trim(),
       descripcion: form.descripcion.trim(),
       precio: Number(form.precio),
-      imagenUrl: form.imagenUrl.trim(),
+      imagenUrl: rutaImagen(form.imagenUrl),
     }
     if (String(form.stock).trim() !== '') datos.stock = Number(form.stock)
 
@@ -142,7 +143,7 @@ function ProductForm({ valoresIniciales, textoBoton, onSubmit }) {
         />
         <small className="error-msg">{errores.imagenUrl}</small>
         {form.imagenUrl.trim() !== '' && !errores.imagenUrl && (
-          <img className="form-vista-previa" src={form.imagenUrl.trim()} alt="Vista previa" />
+          <img className="form-vista-previa" src={rutaImagen(form.imagenUrl)} alt="Vista previa" />
         )}
       </div>
 

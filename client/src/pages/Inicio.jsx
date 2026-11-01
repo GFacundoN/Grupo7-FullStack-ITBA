@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { obtenerProductos } from '../services/productosApi.js'
+import { rutaImagen } from '../utils/rutaImagen.js'
 
 const CANTIDAD_DESTACADOS = 3
 
@@ -61,7 +62,7 @@ function Inicio() {
             {destacados.map((producto) => (
               <article className="tarjeta-producto" key={producto._id}>
                 <Link to={`/productos/${producto._id}`}>
-                  <img src={producto.imagenUrl} alt={producto.nombre} />
+                  <img src={rutaImagen(producto.imagenUrl)} alt={producto.nombre} />
                   <div className="tarjeta-producto__info">
                     <h3 className="tarjeta-producto__nombre">{producto.nombre}</h3>
                     <p className="tarjeta-producto__precio">

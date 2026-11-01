@@ -1,9 +1,16 @@
 # Hermanos Jota — E-commerce de muebles artesanales
 
-Proyecto del curso Full Stack Developer (ITBA), Grupo 7. E-commerce de la mueblería "Hermanos Jota", con catálogo de productos, detalle de producto, carrito y formulario de contacto.
+Proyecto del curso Full Stack Developer (ITBA), Grupo 7. Aplicación **React + Express + MongoDB** para la mueblería "Hermanos Jota": catálogo con datos persistentes y CRUD completo de productos (crear, consultar, editar y eliminar).
 
-**Sitio estático de Sprint 1 y 2 (GitHub Pages):** https://gfacundon.github.io/Grupo7-FullStack-ITBA/index.html
-Esa versión es HTML, CSS y JavaScript puro, y se sirve desde la raíz del repo. La versión cliente-servidor de Sprint 3 y 4 está en `/client` y `/backend`.
+## Enlaces
+
+| | URL |
+|---|---|
+| **Frontend (Vercel/Netlify)** | _pendiente de despliegue_ |
+| **Backend (Render)** | _pendiente de despliegue_ |
+| Sitio estático Sprint 1 y 2 | https://gfacundon.github.io/Grupo7-FullStack-ITBA/index.html |
+
+> Completar las dos primeras filas cuando estén desplegados.
 
 ## Integrantes
 
@@ -17,92 +24,132 @@ Esa versión es HTML, CSS y JavaScript puro, y se sirve desde la raíz del repo.
 
 ## Tecnologías
 
-- **Frontend:** React (creado con Create React App), CSS3 con Flexbox y media queries, fuentes Fraunces e Inter.
-- **Backend:** Node.js y Express 5.
-- **Datos:** array de objetos en `backend/data/productos.js`.
+- **Frontend:** React 19 con Vite, React Router DOM, CSS3 (Flexbox y media queries), fuentes Fraunces e Inter.
+- **Backend:** Node.js, Express 5, Mongoose y CORS.
+- **Base de datos:** MongoDB Atlas (base `hermanos_jota`, colección `products`).
 
 ## Arquitectura
 
 ```
-Hermanos Jota
-├── backend/                 API REST con Express
-│   ├── server.js            arranque, middlewares globales y manejo de errores
-│   ├── routes/              rutas con express.Router
-│   ├── middlewares/         logger, 404 y manejador centralizado de errores
-│   └── data/productos.js    catálogo de productos (array de objetos)
-└── client/                  aplicación React
-    ├── public/              index.html, logo y fotos de productos
-    └── src/
-        ├── App.js           estado global: vista actual, producto seleccionado y carrito
-        ├── index.css        estilos del sitio
-        └── components/
-            ├── Navbar.jsx         menú y contador del carrito (por props)
-            ├── Footer.jsx
-            ├── ProductList.jsx    pide /api/productos y renderiza las tarjetas
-            ├── ProductCard.jsx    una tarjeta de producto
-            ├── ProductDetail.jsx  pide /api/productos/:id y muestra el detalle
-            └── ContactForm.jsx    formulario controlado con useState y validación
+React (client)  ──fetch──▶  Express API (backend)  ──Mongoose──▶  MongoDB Atlas
 ```
 
-### Flujo de datos
+```
+├── backend/
+│   ├── server.js                       Express, CORS, JSON y registro de routers
+│   ├── config/db.js                    conexión a MongoDB (MONGODB_URI)
+│   ├── models/Product.js               modelo Product
+│   ├── routes/productos.routes.js      GET (todos y por id)
+│   ├── routes/productos.write.routes.js  POST, PUT, DELETE
+│   ├── middlewares/                    logger, notFound, errorHandler, validarId, validarProducto
+│   ├── scripts/seedProducts.js         carga inicial del catálogo (sin duplicar)
+│   ├── data/productos.js               catálogo original usado por el seed
+│   └── tests/                          pruebas con node:test
+├── client/
+│   └── src/
+│       ├── main.jsx, App.jsx           BrowserRouter y rutas
+│       ├── components/                 Navbar, Footer, ProductForm, ...
+│       ├── pages/                      Inicio, Productos, ProductoDetalle, Contacto,
+│       │                               CrearProducto, EditarProducto, NoEncontrado
+│       ├── services/productosApi.js    llamadas a la API
+│       ├── context/CarritoContext.jsx  carrito con cantidades
+│       └── styles/                     layout.css y productos.css
+└── legacy-sprint-1-2/                  sitio HTML/CSS/JS de los sprints 1 y 2
+```
 
-1. `ProductList` pide `GET /api/productos` al montarse. Mientras espera muestra "Cargando productos...", y si falla muestra un mensaje de error.
-2. Cada `ProductCard` recibe su producto por props. "Ver producto" llama a `onVerDetalle(id)` y "Añadir al carrito" llama a `onAgregar(producto)`. Ambas funciones viven en `App.js`.
-3. `App.js` cambia entre las vistas *productos*, *detalle* y *contacto* con renderizado condicional. Al elegir un producto guarda su `id`, y `ProductDetail` pide `GET /api/productos/:id` por su cuenta.
-4. El carrito es un array en el estado de `App.js`. El contador del `Navbar` recibe `carrito.length` por props.
+## Rutas del frontend
 
-## Cómo instalar y ejecutar
+| Ruta | Pantalla |
+|---|---|
+| `/` | Inicio |
+| `/productos` | Catálogo |
+| `/productos/:id` | Detalle (`useParams`) |
+| `/contacto` | Formulario de contacto |
+| `/admin/crear-producto` | Alta de producto (formulario controlado) |
+| `/admin/editar-producto/:id` | Edición de producto (formulario controlado) |
 
-Se necesitan dos terminales, una para cada servidor. Levantá primero el backend.
+Después de crear o editar, la app redirige con `useNavigate` al detalle del producto.
+
+## Cómo ejecutarlo en local
+
+Requisitos: Node.js 20.19 o superior y una base MongoDB (Atlas o local).
 
 ### 1. Backend (puerto 5000)
 
 ```bash
 cd backend
 npm install
+cp .env.example .env     # y completar MONGODB_URI
+npm run seed             # carga el catálogo inicial (se puede repetir sin duplicar)
 npm start
 ```
 
-Queda en `http://localhost:5000`. Probá `http://localhost:5000/api/productos`.
+Probá `http://localhost:5000/api/productos`.
 
-### 2. Frontend (puerto 3000)
+### 2. Frontend (puerto 5173)
 
 ```bash
 cd client
 npm install
-npm start
+npm run dev
 ```
 
-Abrí `http://localhost:3000`. El cliente tiene `"proxy": "http://localhost:5000"` en `package.json`, así que las peticiones a `/api/...` se reenvían al backend sin problemas de CORS.
+Abrí `http://localhost:5173`.
 
-## Endpoints de la API
+### Pruebas del backend
+
+```bash
+cd backend
+npm test
+```
+
+## Variables de entorno
+
+El archivo `.env` real **nunca se sube a GitHub** (está en `.gitignore`). En producción las variables se cargan en el panel de cada servicio.
+
+**Backend** (`backend/.env`, o variables de entorno en Render):
+
+| Variable | Descripción |
+|---|---|
+| `MONGODB_URI` | URI de conexión de MongoDB Atlas (con usuario y clave) |
+| `PORT` | Puerto HTTP. Opcional, por defecto `5000` (Render lo define solo) |
+| `CORS_ORIGIN` | URL del frontend permitida por CORS. Varias se separan con coma. Por defecto `http://localhost:5173`. En Render debe ser la URL del frontend publicado |
+
+**Frontend** (`client/.env`, o variables de entorno en Vercel/Netlify):
+
+| Variable | Descripción |
+|---|---|
+| `VITE_API_URL` | URL base de la API, por ejemplo `https://tu-backend.onrender.com/api`. Por defecto `http://localhost:5000/api`. Nunca poner credenciales acá |
+
+## API
+
+Modelo `Product`: `nombre` (String, obligatorio), `descripcion` (String), `precio` (Number, obligatorio), `stock` (Number) e `imagenUrl` (String). También se conservan, como opcionales, `categoria`, `descripcionCorta`, `detalles` y `destacado` del catálogo original. MongoDB genera `_id`, que es el identificador a usar.
 
 | Método | Ruta | Respuesta |
 |---|---|---|
-| GET | `/api/productos` | Lista completa de productos (JSON) |
-| GET | `/api/productos/:id` | Un producto. Si el `id` no existe responde `404` con `{ "error": "Producto no encontrado" }` |
-| GET | `/` | Mensaje de prueba de que el servidor funciona |
-| cualquiera | ruta inexistente | `404` con `{ "status": 404, "error": "Not Found", "message": ... }` |
+| GET | `/api/productos` | Array de productos |
+| GET | `/api/productos/:id` | Un producto (`404` si no existe, `400` si el id es inválido) |
+| POST | `/api/productos` | Producto creado, estado `201` |
+| PUT | `/api/productos/:id` | Producto actualizado |
+| DELETE | `/api/productos/:id` | `{ "mensaje": "...", "_id": "..." }` |
 
-Los errores del servidor pasan por un único manejador en `middlewares/errorHandler.js`, que responde en JSON.
+Errores: datos inválidos `400`, producto inexistente `404` y fallo del servidor `500`, con el formato `{ "error": "Producto no encontrado" }`. El POST no acepta `_id` ni `id` del cliente: el `id` numérico del catálogo se asigna solo.
 
-Cada petición se registra en la consola del backend con su método y URL (`middlewares/logger.js`).
+```bash
+curl -X POST http://localhost:5000/api/productos \
+  -H "Content-Type: application/json" \
+  -d '{"nombre":"Mesa de centro","precio":120000,"stock":5}'
+```
 
-## Decisiones tomadas
+## Cómo probar el CRUD completo
 
-- **Puerto 5000 para el backend.** Create React App usa el 3000 por defecto, así que el backend se movió al 5000 para que no choquen.
-- **Proxy en lugar de CORS.** Con `"proxy"` en el cliente, el código usa rutas relativas (`/api/productos`) y no hace falta habilitar CORS en Express.
-- **Vistas con estado en lugar de React Router.** La consigna pide renderizado condicional, y para tres vistas (productos, detalle y contacto) un router sería complejidad extra. Si el sitio crece, conviene migrar a React Router.
-- **Carrito simple.** Cada "Añadir al carrito" agrega una unidad y el contador muestra la cantidad de unidades agregadas. No hay vista del carrito ni total, porque no estaban en la consigna.
-- **Datos en el backend.** El catálogo vive en `backend/data/productos.js`, así que el frontend no lee datos locales y todo pasa por la API.
-- **Nombres de propiedades acordados.** Todos los componentes usan `nombre`, `precio`, `categoria`, `imagen`, `descripcion`, `descripcionCorta` y `detalles`.
-
-## Estado de la entrega
-
-Sprint 3 y 4 cubren la versión cliente-servidor en `/client` y `/backend`. Backend y frontend corren en local con los pasos de arriba. **El backend no está desplegado**: GitHub Pages solo sirve sitios estáticos, así que la versión pública sigue siendo la del Sprint 1 y 2.
+1. Abrir `/admin/crear-producto`, completar el formulario y guardar.
+2. Verlo en `/productos` y abrir su detalle.
+3. Editarlo desde `/admin/editar-producto/:id` y volver a ver el detalle.
+4. Eliminarlo y confirmar que ya no aparece.
 
 ## Flujo de trabajo en Git
 
-- `main` es la rama de entrega. `sprint-N` es la rama de integración del sprint.
-- Las ramas personales se llaman `feature/nombre-tarea` (por ejemplo `feature/detail-cart`) y salen de `sprint-N`.
-- Nadie pushea directo a `main` ni a `sprint-N`: todo entra por Pull Request.
+- `main` es la rama de entrega. `sprint-5-6` es la rama de integración de este sprint.
+- Las ramas personales se llaman `feature/nombre-tarea` y salen de `sprint-5-6`.
+- Nadie pushea directo a `main` ni a `sprint-5-6`: todo entra por Pull Request.
