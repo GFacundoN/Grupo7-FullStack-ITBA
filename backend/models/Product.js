@@ -2,16 +2,16 @@ const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
   {
-    // Se conserva el identificador numerico que utiliza el frontend.
+    // Se conserva el identificador numerico del catalogo original. Los productos
+    // nuevos lo reciben automaticamente en POST (siguiente numero libre).
     id: {
       type: Number,
-      required: true,
       unique: true,
       min: 1,
       validate: Number.isSafeInteger
     },
     nombre: { type: String, required: true, trim: true },
-    categoria: { type: String, required: true, trim: true },
+    categoria: { type: String, trim: true },
     precio: {
       type: Number,
       required: true,
@@ -19,24 +19,20 @@ const productSchema = new mongoose.Schema(
       validate: Number.isFinite
     },
     // Se almacena una sola imagen; "imagen" mantiene el contrato del frontend.
-    imagenUrl: { type: String, required: true, trim: true, alias: "imagen" },
+    imagenUrl: { type: String, trim: true, alias: "imagen" },
     stock: {
       type: Number,
       default: 0,
       min: 0,
       validate: Number.isSafeInteger
     },
-    descripcionCorta: { type: String, required: true, trim: true },
-    descripcion: { type: String, required: true, trim: true },
+    descripcionCorta: { type: String, trim: true },
+    descripcion: { type: String, trim: true },
     // Las especificaciones varian segun el mueble; todos sus valores son textos.
+    // Segun la consigna, solo nombre y precio son obligatorios.
     detalles: {
       type: Map,
-      of: { type: String, required: true, trim: true },
-      required: true,
-      validate: {
-        validator: (value) => value != null && value.size > 0,
-        message: "El producto debe incluir al menos un detalle."
-      }
+      of: { type: String, trim: true }
     },
     destacado: { type: Boolean, default: false }
   },
