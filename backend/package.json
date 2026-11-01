@@ -4,9 +4,14 @@
   "description": "Backend de Mueblería Hermanos Jota",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node scripts/seedProducts.js",
+    "test": "node --test tests/*.test.js",
+    "test:atlas": "node scripts/verifyAtlas.js"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "dotenv": "^18.0.9",
+    "express": "^5.2.1",
+    "mongoose": "^9.11.4"
   }
 }

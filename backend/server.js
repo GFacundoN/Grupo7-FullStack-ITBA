@@ -1,4 +1,5 @@
 const express = require("express");
+const connectDB = require("./config/db");
 const productosRoutes = require("./routes/productos.routes");
 
 // Importación de middlewares (Máximo)
@@ -26,6 +27,22 @@ app.use(notFound);
 app.use(errorHandler);  
 
 // Inicio del servidor
-app.listen(PORT, () => {
-  console.log(`Servidor funcionando en http://localhost:${PORT}`);
-});
+async function startServer(port = PORT) {
+  await connectDB();
+  return new Promise((resolve, reject) => {
+    const server = app.listen(port, () => {
+      console.log(`Servidor funcionando en http://localhost:${server.address().port}`);
+      resolve(server);
+    });
+    server.once("error", reject);
+  });
+}
+
+if (require.main === module) {
+  startServer().catch(() => {
+    console.error("No se pudo iniciar el servidor: revise la conexion y configuracion de MongoDB.");
+    process.exit(1);
+  });
+}
+
+module.exports = { app, startServer };
