@@ -7,10 +7,10 @@ Proyecto del curso Full Stack Developer (ITBA), Grupo 7. Aplicación **React + E
 | | URL |
 |---|---|
 | **Frontend (Vercel/Netlify)** | https://client-neon-ten-45.vercel.app |
-| **Backend (Render)** | _pendiente de despliegue_ |
+| **Backend (Render)** | https://backend-grupo7-hstl.onrender.com |
 | Sitio estático Sprint 1 y 2 | https://gfacundon.github.io/Grupo7-FullStack-ITBA/index.html |
 
-> Completar las dos primeras filas cuando estén desplegados.
+> El backend está en el plan free de Render: si nadie lo usó en un rato "se duerme" y la primera petición puede tardar 30-50 segundos en responder mientras arranca de nuevo.
 
 ## Integrantes
 
