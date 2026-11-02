@@ -1,7 +1,6 @@
-// TEMPORAL (Germán): implementación mínima con las firmas acordadas para poder
-// probar los formularios. El dueño de este archivo es Facundo: al integrar,
-// quedarse con su versión (mismas firmas: obtenerProductos, obtenerProducto,
-// crearProducto, actualizarProducto, eliminarProducto).
+// Cliente de la API de productos (dueño: Facundo). Firmas acordadas con el
+// equipo: obtenerProductos, obtenerProducto, crearProducto, actualizarProducto,
+// eliminarProducto. Revisado para el catálogo, el detalle y el borrado.
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api'
 
 // Devuelve el JSON de la respuesta o tira un Error con el mensaje de la API
