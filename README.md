@@ -6,7 +6,7 @@ Proyecto del curso Full Stack Developer (ITBA), Grupo 7. Aplicación **React + E
 
 | | URL |
 |---|---|
-| **Frontend (Vercel/Netlify)** | _pendiente de despliegue_ |
+| **Frontend (Vercel/Netlify)** | https://client-neon-ten-45.vercel.app |
 | **Backend (Render)** | _pendiente de despliegue_ |
 | Sitio estático Sprint 1 y 2 | https://gfacundon.github.io/Grupo7-FullStack-ITBA/index.html |
 
