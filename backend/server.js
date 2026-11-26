@@ -3,6 +3,9 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const productosRoutes = require("./routes/productos.routes");
 const productosWriteRoutes = require("./routes/productos.write.routes");
+const authRoutes = require("./routes/auth.routes");
+const asegurarIndiceUsuarios = require("./utils/asegurarIndiceUsuarios");
+const { validarConfiguracionJWT } = require("./utils/jwt");
 
 // Importación de middlewares (Máximo)
 const logger = require("./middlewares/logger");
@@ -20,6 +23,7 @@ const origenesPermitidos = (process.env.CORS_ORIGIN || "http://localhost:5173")
 
 // Middlewares globales de entrada 
 app.use(cors({ origin: origenesPermitidos }));
+app.use("/api/auth", authRoutes);
 app.use(express.json()); // Permite procesar peticiones con cuerpo JSON
 app.use(logger);         // Muestra en consola el método HTTP y la URL solicitada
 
@@ -38,7 +42,9 @@ app.use(errorHandler);
 
 // Inicio del servidor
 async function startServer(port = PORT) {
+  validarConfiguracionJWT();
   await connectDB();
+  await asegurarIndiceUsuarios();
   return new Promise((resolve, reject) => {
     const server = app.listen(port, () => {
       console.log(`Servidor funcionando en http://localhost:${server.address().port}`);
@@ -50,7 +56,7 @@ async function startServer(port = PORT) {
 
 if (require.main === module) {
   startServer().catch(() => {
-    console.error("No se pudo iniciar el servidor: revise la conexion y configuracion de MongoDB.");
+    console.error("No se pudo iniciar el servidor: revise la configuracion JWT, MongoDB y los indices requeridos.");
     process.exit(1);
   });
 }
