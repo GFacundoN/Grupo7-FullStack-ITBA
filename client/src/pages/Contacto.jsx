@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { emailValido } from "../utils/emailValido.js";
 
 function Contacto() {
   const [nombre, setNombre] = useState("");
@@ -6,10 +7,6 @@ function Contacto() {
   const [mensaje, setMensaje] = useState("");
   const [errores, setErrores] = useState({});
   const [enviado, setEnviado] = useState(false);
-
-  function emailValido(texto) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(texto);
-  }
 
   function validar() {
     const nuevosErrores = {};
