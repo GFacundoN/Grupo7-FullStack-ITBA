@@ -138,6 +138,21 @@ p { margin: 0 0 1em; }
     border-color: var(--siena);
 }
 
+.header__salir {
+    padding: 0 0 2px;
+    font: inherit;
+    font-weight: 500;
+    color: inherit;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+.header__salir:hover {
+    color: var(--siena);
+    border-color: var(--siena);
+}
+
 .header__carrito {
     display: inline-flex;
     align-items: center;
@@ -374,6 +389,8 @@ p { margin: 0 0 1em; }
 
 /* formulario de producto y páginas simples */
 .pagina-intro { margin-bottom: 2rem; color: var(--texto-suave); }
+.pagina-enlace { margin-top: 1.5rem; }
+.pagina-enlace a { color: var(--siena); border-bottom: 1px solid var(--siena); }
 .boton-primario,
 .boton-enlace {
     display: inline-block;

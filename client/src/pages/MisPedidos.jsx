@@ -4,7 +4,7 @@ import { obtenerMisPedidos } from '../services/pedidosApi.js'
 import '../styles/cuenta.css'
 
 function MisPedidos() {
-  const { token } = useAuth()
+  const { token, logout } = useAuth()
   const [pedidos, setPedidos] = useState([])
   const [estado, setEstado] = useState('cargando') // cargando | ok | error
 
@@ -18,8 +18,10 @@ function MisPedidos() {
         setPedidos(datos)
         setEstado('ok')
       })
-      .catch(() => {
-        if (activo) setEstado('error')
+      .catch((error) => {
+        if (!activo) return
+        if (error.status === 401) logout()
+        else setEstado('error')
       })
 
     // Cleanup: si se desmonta antes de la respuesta, se ignora.

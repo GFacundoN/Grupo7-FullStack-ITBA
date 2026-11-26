@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext.jsx'
 import { useCarrito } from '../context/CarritoContext.jsx'
 
 function Navbar() {
   const { cantidadTotal } = useCarrito()
+  const { isAuthenticated, isLoading, logout } = useAuth()
   const [avisoVisible, setAvisoVisible] = useState(false)
 
   // El aviso "Próximamente" se oculta solo a los 2 segundos.
@@ -34,6 +36,32 @@ function Navbar() {
             <li>
               <NavLink to="/admin/crear-producto">Nuevo producto</NavLink>
             </li>
+
+            {!isLoading &&
+              (isAuthenticated ? (
+                <>
+                  <li>
+                    <NavLink to="/perfil">Perfil</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/mis-pedidos">Mis pedidos</NavLink>
+                  </li>
+                  <li>
+                    <button type="button" className="header__salir" onClick={logout}>
+                      Cerrar sesión
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <NavLink to="/registro">Registro</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/login">Login</NavLink>
+                  </li>
+                </>
+              ))}
           </ul>
         </nav>
 
