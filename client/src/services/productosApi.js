@@ -7,7 +7,7 @@ const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api'
 // y el status HTTP en error.status. El catálogo de productos usa { "error": "..." };
 // el contrato nuevo de auth/pedidos (sprint 7-8) usa { "message": "..." }. Se
 // acepta cualquiera de los dos para no romper ninguno de los dos routers.
-async function pedir(ruta, opciones) {
+export async function pedir(ruta, opciones) {
   let respuesta
   try {
     respuesta = await fetch(`${API_URL}${ruta}`, opciones)
@@ -25,7 +25,7 @@ async function pedir(ruta, opciones) {
   return datos
 }
 
-function conBody(metodo, datos) {
+export function conBody(metodo, datos) {
   return {
     method: metodo,
     headers: { 'Content-Type': 'application/json' },
