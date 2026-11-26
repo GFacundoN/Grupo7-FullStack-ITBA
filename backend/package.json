@@ -7,12 +7,16 @@
     "start": "node server.js",
     "seed": "node scripts/seedProducts.js",
     "test": "node --test tests/*.test.js",
-    "test:atlas": "node scripts/verifyAtlas.js"
+    "test:atlas": "node scripts/verifyAtlas.js",
+    "test:auth:integration": "node scripts/verifyAuthMongo.js"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^18.0.9",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.7.5",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.11.4"
   }
 }
