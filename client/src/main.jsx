@@ -5,6 +5,7 @@ import App from './App.jsx'
 import { CarritoProvider } from './context/CarritoContext.jsx'
 import './styles/layout.css'
 import './styles/productos.css'
+import './styles/carrito.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

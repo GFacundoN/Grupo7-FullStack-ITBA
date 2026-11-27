@@ -8,6 +8,7 @@ import Inicio from './pages/Inicio.jsx'
 import NoEncontrado from './pages/NoEncontrado.jsx'
 import ProductoDetalle from './pages/ProductoDetalle.jsx'
 import Productos from './pages/Productos.jsx'
+import Carrito from './pages/Carrito.jsx'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/admin/crear-producto" element={<CrearProducto />} />
           <Route path="/admin/editar-producto/:id" element={<EditarProducto />} />
           <Route path="*" element={<NoEncontrado />} />
+          <Route path="/carrito" element={<Carrito />} />
         </Routes>
       </main>
 
